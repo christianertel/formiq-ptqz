@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PTQZ Meldeformular</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .info-banner {
+            background: #e8f4fd;
+            border-left: 4px solid #3182ce;
+            padding: 15px 20px;
+            margin: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .info-banner p {
+            color: #2c5282;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .form-content {
+            padding: 20px 30px 30px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #4a7ab0 0%, #5a8ac0 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+            position: relative;
+        }
+
+        .form-group.small {
+            flex: 0 0 150px;
+            min-width: 150px;
+        }
+
+        .form-group.medium {
+            flex: 0 0 200px;
+            min-width: 200px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group select {
+            width: 100%;
+            padding: 10px 40px 10px 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #3182ce;
+            box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
+        }
+
+        .form-group input.prefilled {
+            background-color: #f0f9ff;
+            border-color: #93c5fd;
+        }
+
+        .form-group input.prefilled:read-only {
+            cursor: default;
+        }
+
+        .edit-btn {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            color: #6b7280;
+            padding: 5px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .edit-btn:hover {
+            background: #f3f4f6;
+            color: #3182ce;
+        }
+
+        .checkbox-group {
+            margin-bottom: 15px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .checkbox-label:hover {
+            background: #f9fafb;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .conditional-field {
+            display: none;
+            margin-left: 30px;
+            margin-top: 10px;
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+            border-left: 3px solid #3182ce;
+        }
+
+        .conditional-field.visible {
+            display: block;
+        }
+
+        .required-note {
+            color: #dc2626;
+            font-size: 0.85rem;
+            margin-top: 20px;
+        }
+
+        .submit-section {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
+            color: white;
+            border: none;
+            padding: 15px 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(30, 58, 95, 0.3);
+        }
+
+        .submit-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        @media (max-width: 600px) {
+            .form-group {
+                min-width: 100%;
+            }
+            .form-group.small,
+            .form-group.medium {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Meldeformular zur Mitarbeit in einem strukturierten<br>Qualitätszirkel zur Arzneimitteltherapie (PTQZ)</h1>
+        </div>
+
+        <div class="info-banner">
+            <p>Ihre Daten wurden teilweise automatisch übernommen. Bitte prüfen Sie alle Angaben, ergänzen Sie fehlende, und ändern Sie unzutreffende Informationen.</p>
+        </div>
+
+        <form class="form-content" id="ptqzForm">
+            <!-- Persönliche Daten -->
+            <div class="section">
+                <div class="section-header">Persönliche Daten</div>
+                <div class="form-row">
+                    <div class="form-group small">
+                        <label for="anrede">Anrede</label>
+                        <div class="input-wrapper">
+                            <select id="anrede" name="anrede">
+                                <option value="">Bitte wählen</option>
+                                <option value="Frau">Frau</option>
+                                <option value="Herr">Herr</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group small">
+                        <label for="titel">Titel</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="titel" name="titel" placeholder="z.B. Dr. med.">
+                            <button type="button" class="edit-btn" data-field="titel" title="Bearbeiten">✏️</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="vorname">Vorname</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="vorname" name="vorname" required>
+                            <button type="button" class="edit-btn" data-field="vorname" title="Bearbeiten">✏️</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nachname">Nachname</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="nachname" name="nachname" required>
+                            <button type="button" class="edit-btn" data-field="nachname" title="Bearbeiten">✏️</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="strasse">Straße Hausnummer</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="strasse" name="strasse">
+                            <button type="button" class="edit-btn" data-field="strasse" title="Bearbeiten">✏️</button>
+                        </div>
+                    </div>
+                    <div class="form-group small">
+                        <label for="plz">PLZ</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="plz" name="plz" maxlength="5">
+                            <button type="button" class="edit-btn" data-field="plz" title="Bearbeiten">✏️</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ort">Ort</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="ort" name="ort">
+                            <button type="button" class="edit-btn" data-field="ort" title="Bearbeiten">✏️</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kontaktdaten -->
+            <div class="section">
+                <div class="section-header">Kontaktdaten</div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="telefon">Telefonnummer</label>
+                        <div class="input-wrapper">
+                            <input type="tel" id="telefon" name="telefon">
+                            <button type="button" class="edit-btn" data-field="telefon" title="Bearbeiten">✏️</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fax">Faxnummer</label>
+                        <div class="input-wrapper">
+                            <input type="tel" id="fax" name="fax">
+                            <button type="button" class="edit-btn" data-field="fax" title="Bearbeiten">✏️</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">E-Mailadresse</label>
+                        <div class="input-wrapper">
+                            <input type="email" id="email" name="email">
+                            <button type="button" class="edit-btn" data-field="email" title="Bearbeiten">✏️</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HZV und PTQZ Teilnahme-Status -->
+            <div class="section">
+                <div class="section-header">HZV und PTQZ Teilnahme-Status</div>
+                
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="hzvTeilnahme" name="hzvTeilnahme">
+                        <span>Ja, ich habe den HZV-Vertrag unterzeichnet</span>
+                    </label>
+                    <div class="conditional-field" id="taetigInContainer">
+                        <div class="form-group">
+                            <label for="taetigIn">Tätig in</label>
+                            <select id="taetigIn" name="taetigIn">
+                                <option value="">Bitte wählen</option>
+                                <option value="Einzelpraxis">Einzelpraxis</option>
+                                <option value="MVZ">MVZ</option>
+                                <option value="Praxisgemeinschaft">Praxisgemeinschaft</option>
+                                <option value="BAG">BAG</option>
+                                <option value="UEBAG">ÜBAG</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <p style="font-weight: 500; margin-bottom: 10px; color: #374151;">Ich bin bereits Mitglied eines PTQZ:</p>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="ptqzJa" name="ptqzMitglied" value="ja">
+                        <span>Ja</span>
+                    </label>
+                    <div class="conditional-field" id="moderatorContainer">
+                        <div class="form-group">
+                            <label for="moderator">Moderator</label>
+                            <select id="moderator" name="moderator">
+                                <option value="">Bitte wählen</option>
+                                <option value="sieger">Dr. med. Sabine Sieger (Stuttgart)</option>
+                                <option value="knauser">Dr. med. Karl Knauser (Konstanz)</option>
+                                <option value="freund">Dr. med. Friederike Freund (Freiburg)</option>
+                                <option value="unger">Dr. med. Ulrike Unger (Ulm)</option>
+                                <option value="macher">Dr. med. Manfred Macher (Mannheim)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="ptqzNein" name="ptqzMitglied" value="nein">
+                        <span>Nein, bitte organisieren Sie meine Teilnahme in der Nähe von</span>
+                    </label>
+                    <div class="conditional-field" id="ortNaeheContainer">
+                        <div class="form-group">
+                            <label for="ortNaehe">Ort</label>
+                            <input type="text" id="ortNaehe" name="ortNaehe" placeholder="z.B. Stuttgart">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Einwilligung -->
+            <div class="section">
+                <div class="section-header">Einwilligung</div>
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="datenschutz" name="datenschutz" required>
+                        <span>Ich habe die Datenschutzhinweise gelesen und bin mit der Verarbeitung meiner Daten zum Zweck der Veranstaltungsorganisation einverstanden. *</span>
+                    </label>
+                </div>
+                <p class="required-note">* Pflichtfeld</p>
+            </div>
+
+            <div class="submit-section">
+                <button type="submit" class="submit-btn">Anmeldung absenden</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Original values storage
+        const originalValues = {};
+
+        // Parse URL parameters and prefill form
+        function prefillForm() {
+            const params = new URLSearchParams(window.location.search);
+            const fieldMapping = {
+                'anrede': 'anrede',
+                'titel': 'titel',
+                'vorname': 'vorname',
+                'nachname': 'nachname',
+                'strasse': 'strasse',
+                'plz': 'plz',
+                'ort': 'ort',
+                'telefon': 'telefon',
+                'fax': 'fax',
+                'email': 'email'
+            };
+
+            for (const [param, fieldId] of Object.entries(fieldMapping)) {
+                const value = params.get(param);
+                if (value) {
+                    const field = document.getElementById(fieldId);
+                    if (field) {
+                        field.value = decodeURIComponent(value);
+                        originalValues[fieldId] = field.value;
+                        if (field.tagName === 'INPUT') {
+                            field.classList.add('prefilled');
+                        }
+                    }
+                }
+            }
+        }
+
+        // Edit button functionality
+        document.querySelectorAll('.edit-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const fieldId = this.dataset.field;
+                const field = document.getElementById(fieldId);
+                
+                if (this.textContent === '✏️') {
+                    // Store original value and clear field
+                    if (!originalValues[fieldId]) {
+                        originalValues[fieldId] = field.value;
+                    }
+                    field.value = '';
+                    field.classList.remove('prefilled');
+                    field.removeAttribute('readonly');
+                    field.focus();
+                    this.textContent = '↩️';
+                    this.title = 'Rückgängig';
+                } else {
+                    // Restore original value
+                    field.value = originalValues[fieldId] || '';
+                    if (originalValues[fieldId]) {
+                        field.classList.add('prefilled');
+                    }
+                    this.textContent = '✏️';
+                    this.title = 'Bearbeiten';
+                }
+            });
+        });
+
+        // Conditional field visibility
+        document.getElementById('hzvTeilnahme').addEventListener('change', function() {
+            document.getElementById('taetigInContainer').classList.toggle('visible', this.checked);
+        });
+
+        document.getElementById('ptqzJa').addEventListener('change', function() {
+            document.getElementById('moderatorContainer').classList.toggle('visible', this.checked);
+            if (this.checked) {
+                document.getElementById('ptqzNein').checked = false;
+                document.getElementById('ortNaeheContainer').classList.remove('visible');
+            }
+        });
+
+        document.getElementById('ptqzNein').addEventListener('change', function() {
+            document.getElementById('ortNaeheContainer').classList.toggle('visible', this.checked);
+            if (this.checked) {
+                document.getElementById('ptqzJa').checked = false;
+                document.getElementById('moderatorContainer').classList.remove('visible');
+            }
+        });
+
+        // Form submission
+        document.getElementById('ptqzForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!document.getElementById('datenschutz').checked) {
+                alert('Bitte bestätigen Sie die Datenschutzhinweise.');
+                return;
+            }
+
+            // Collect form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            console.log('Formulardaten:', data);
+            alert('Vielen Dank für Ihre Anmeldung! Ihre Daten wurden erfolgreich übermittelt.');
+        });
+
+        // Initialize
+        prefillForm();
+    </script>
+</body>
+</html>
