@@ -272,21 +272,21 @@
                         <label for="titel">Titel</label>
                         <div class="input-wrapper">
                             <input type="text" id="titel" name="titel" placeholder="z.B. Dr. med.">
-                            <button type="button" class="edit-btn" data-field="titel" title="Bearbeiten">✏️</button>
+                            <button type="button" class="edit-btn" data-field="titel" title="Bearbeiten">&#9999;&#65039;</button>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="vorname">Vorname</label>
                         <div class="input-wrapper">
                             <input type="text" id="vorname" name="vorname" required>
-                            <button type="button" class="edit-btn" data-field="vorname" title="Bearbeiten">✏️</button>
+                            <button type="button" class="edit-btn" data-field="vorname" title="Bearbeiten">&#9999;&#65039;</button>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="nachname">Nachname</label>
                         <div class="input-wrapper">
                             <input type="text" id="nachname" name="nachname" required>
-                            <button type="button" class="edit-btn" data-field="nachname" title="Bearbeiten">✏️</button>
+                            <button type="button" class="edit-btn" data-field="nachname" title="Bearbeiten">&#9999;&#65039;</button>
                         </div>
                     </div>
                 </div>
@@ -295,21 +295,38 @@
                         <label for="strasse">Straße Hausnummer</label>
                         <div class="input-wrapper">
                             <input type="text" id="strasse" name="strasse">
-                            <button type="button" class="edit-btn" data-field="strasse" title="Bearbeiten">✏️</button>
+                            <button type="button" class="edit-btn" data-field="strasse" title="Bearbeiten">&#9999;&#65039;</button>
                         </div>
                     </div>
                     <div class="form-group small">
                         <label for="plz">PLZ</label>
                         <div class="input-wrapper">
                             <input type="text" id="plz" name="plz" maxlength="5">
-                            <button type="button" class="edit-btn" data-field="plz" title="Bearbeiten">✏️</button>
+                            <button type="button" class="edit-btn" data-field="plz" title="Bearbeiten">&#9999;&#65039;</button>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="ort">Ort</label>
                         <div class="input-wrapper">
                             <input type="text" id="ort" name="ort">
-                            <button type="button" class="edit-btn" data-field="ort" title="Bearbeiten">✏️</button>
+                            <button type="button" class="edit-btn" data-field="ort" title="Bearbeiten">&#9999;&#65039;</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- NEUE ZEILE: LANR und BSNR -->
+                <div class="form-row">
+                    <div class="form-group medium">
+                        <label for="lanr">LANR</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="lanr" name="lanr" maxlength="9" placeholder="9-stellig">
+                            <button type="button" class="edit-btn" data-field="lanr" title="Bearbeiten">&#9999;&#65039;</button>
+                        </div>
+                    </div>
+                    <div class="form-group medium">
+                        <label for="bsnr">BSNR</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="bsnr" name="bsnr" maxlength="9" placeholder="9-stellig">
+                            <button type="button" class="edit-btn" data-field="bsnr" title="Bearbeiten">&#9999;&#65039;</button>
                         </div>
                     </div>
                 </div>
@@ -323,14 +340,14 @@
                         <label for="telefon">Telefonnummer</label>
                         <div class="input-wrapper">
                             <input type="tel" id="telefon" name="telefon">
-                            <button type="button" class="edit-btn" data-field="telefon" title="Bearbeiten">✏️</button>
+                            <button type="button" class="edit-btn" data-field="telefon" title="Bearbeiten">&#9999;&#65039;</button>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="fax">Faxnummer</label>
                         <div class="input-wrapper">
                             <input type="tel" id="fax" name="fax">
-                            <button type="button" class="edit-btn" data-field="fax" title="Bearbeiten">✏️</button>
+                            <button type="button" class="edit-btn" data-field="fax" title="Bearbeiten">&#9999;&#65039;</button>
                         </div>
                     </div>
                 </div>
@@ -339,7 +356,7 @@
                         <label for="email">E-Mailadresse</label>
                         <div class="input-wrapper">
                             <input type="email" id="email" name="email">
-                            <button type="button" class="edit-btn" data-field="email" title="Bearbeiten">✏️</button>
+                            <button type="button" class="edit-btn" data-field="email" title="Bearbeiten">&#9999;&#65039;</button>
                         </div>
                     </div>
                 </div>
@@ -363,7 +380,7 @@
                                 <option value="MVZ">MVZ</option>
                                 <option value="Praxisgemeinschaft">Praxisgemeinschaft</option>
                                 <option value="BAG">BAG</option>
-                                <option value="UEBAG">ÜBAG</option>
+                                <option value="ÜBAG">ÜBAG</option>
                             </select>
                         </div>
                     </div>
@@ -393,10 +410,10 @@
                         <input type="checkbox" id="ptqzNein" name="ptqzMitglied" value="nein">
                         <span>Nein, bitte organisieren Sie meine Teilnahme in der Nähe von</span>
                     </label>
-                    <div class="conditional-field" id="ortNaeheContainer">
+                    <div class="conditional-field" id="ortNäheContainer">
                         <div class="form-group">
-                            <label for="ortNaehe">Ort</label>
-                            <input type="text" id="ortNaehe" name="ortNaehe" placeholder="z.B. Stuttgart">
+                            <label for="ortNähe">Ort</label>
+                            <input type="text" id="ortNähe" name="ortNähe" placeholder="z.B. Stuttgart">
                         </div>
                     </div>
                 </div>
@@ -435,6 +452,8 @@
                 'strasse': 'strasse',
                 'plz': 'plz',
                 'ort': 'ort',
+                'lanr': 'lanr',
+                'bsnr': 'bsnr',
                 'telefon': 'telefon',
                 'fax': 'fax',
                 'email': 'email'
@@ -461,7 +480,7 @@
                 const fieldId = this.dataset.field;
                 const field = document.getElementById(fieldId);
                 
-                if (this.textContent === '✏️') {
+                if (this.innerHTML.includes('9999')) {
                     // Store original value and clear field
                     if (!originalValues[fieldId]) {
                         originalValues[fieldId] = field.value;
@@ -470,7 +489,7 @@
                     field.classList.remove('prefilled');
                     field.removeAttribute('readonly');
                     field.focus();
-                    this.textContent = '↩️';
+                    this.innerHTML = '&#8617;&#65039;';
                     this.title = 'Rückgängig';
                 } else {
                     // Restore original value
@@ -478,7 +497,7 @@
                     if (originalValues[fieldId]) {
                         field.classList.add('prefilled');
                     }
-                    this.textContent = '✏️';
+                    this.innerHTML = '&#9999;&#65039;';
                     this.title = 'Bearbeiten';
                 }
             });
@@ -493,12 +512,12 @@
             document.getElementById('moderatorContainer').classList.toggle('visible', this.checked);
             if (this.checked) {
                 document.getElementById('ptqzNein').checked = false;
-                document.getElementById('ortNaeheContainer').classList.remove('visible');
+                document.getElementById('ortNäheContainer').classList.remove('visible');
             }
         });
 
         document.getElementById('ptqzNein').addEventListener('change', function() {
-            document.getElementById('ortNaeheContainer').classList.toggle('visible', this.checked);
+            document.getElementById('ortNäheContainer').classList.toggle('visible', this.checked);
             if (this.checked) {
                 document.getElementById('ptqzJa').checked = false;
                 document.getElementById('moderatorContainer').classList.remove('visible');
